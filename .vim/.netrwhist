@@ -1,3 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
-let g:netrw_dirhist_1='/Users/brianmock/Code/Nopical/nopicalbeta2'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/brianmock/Code/Nopical/nopicalbeta2/imports'
+let g:netrw_dirhist_2='/Users/brianmock/Code/Nopical/nopicalbeta2/imports/ui'
+let g:netrw_dirhist_3='/Users/brianmock/Code/Nopical/nopicalbeta2/imports/ui/pages'
+let g:netrw_dirhist_4='/Users/brianmock/Code/Nopical/nopicalbeta2/imports/ui/pages/categoryHome'
+let g:netrw_dirhist_5='/Users/brianmock/Code/Nopical/nopicalbeta2'

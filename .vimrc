@@ -46,6 +46,7 @@ let g:syntastic_check_on_wq = 0
 "    -> Spell checking
 "    -> Misc
 "    -> Helper functions
+"    -> Syntax
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -81,12 +82,6 @@ command W w !sudo tee % > /dev/null
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
-
-" Avoid garbled characters in Chinese language windows OS
-let $LANG='en' 
-set langmenu=en
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
 
 " Turn on the WiLd menu
 set wildmenu
@@ -142,15 +137,16 @@ set t_vb=
 set tm=500
 
 " Add a bit extra margin to the left
-set foldcolumn=1
+" set foldcolumn=1
 
+set number
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable 
-
+highlight LineNr ctermfg=grey
 try
     colorscheme desert
 catch
@@ -192,8 +188,8 @@ set expandtab
 set smarttab
 
 " 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -221,8 +217,8 @@ map j gj
 map k gk
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
+"map <space> /
+"map <c-space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -270,10 +266,10 @@ catch
 endtry
 
 " Return to last edit position when opening files (You want this!)
-" autocmd BufReadPost *
-"      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-"      \   exe "normal! g`\"" |
-"      \ endif
+"autocmd BufReadPost *
+"\if line("'\"") > 0 && line("'\"") <= line("$") |
+"\  exe "normal! g`\"" |
+"\endif
 " Remember info about open buffers on close
 " set viminfo^=%
 
@@ -316,7 +312,15 @@ endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
+" Visual mode mappings
+vnoremap <tab> %
+
+" Insert mode mappings
 inoremap jk <ESC>
+
+" Normal mode mappings
+nnoremap <tab> %
+nnoremap <leader><space> :noh<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ag searching and cope displaying
@@ -443,3 +447,12 @@ endfunction
 " if has("autocmd")
 "   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 "endif
+
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+highlight Constant ctermfg=69
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntax
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_javascript_checkers = ['eslint']
